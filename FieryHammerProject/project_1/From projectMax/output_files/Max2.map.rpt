@@ -1,0 +1,354 @@
+Analysis & Synthesis report for Max2
+Sun Nov 03 14:45:30 2024
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. General Register Statistics
+  9. Port Connectivity Checks: "summator:summator_inst|schetchik_key:schetchik_key_inst"
+ 10. Port Connectivity Checks: "summator:summator_inst"
+ 11. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++-----------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status ; Successful - Sun Nov 03 14:45:30 2024           ;
+; Quartus Prime Version       ; 18.1.0 Build 625 09/12/2018 SJ Standard Edition ;
+; Revision Name               ; Max2                                            ;
+; Top-level Entity Name       ; HY_207                                          ;
+; Family                      ; MAX II                                          ;
+; Total logic elements        ; 0                                               ;
+; Total pins                  ; 80                                              ;
+; Total virtual pins          ; 0                                               ;
+; UFM blocks                  ; 0 / 1 ( 0 % )                                   ;
++-----------------------------+-------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                              ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                           ; EPM240T100C5       ;                    ;
+; Top-level entity name                                            ; HY_207             ; Max2               ;
+; Family name                                                      ; MAX II             ; Cyclone V          ;
+; Use smart compilation                                            ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                      ;
++----------------------------------+-----------------+------------------------+-------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path        ; Library ;
++----------------------------------+-----------------+------------------------+-------------------------------------+---------+
+; HY-207.v                         ; yes             ; User Verilog HDL File  ; C:/intelFPGA/18.1/project1/HY-207.v ;         ;
++----------------------------------+-----------------+------------------------+-------------------------------------+---------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+; Total logic elements                        ; 0     ;
+;     -- Combinational with no register       ; 0     ;
+;     -- Register only                        ; 0     ;
+;     -- Combinational with a register        ; 0     ;
+;                                             ;       ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 0     ;
+;     -- 3 input functions                    ; 0     ;
+;     -- 2 input functions                    ; 0     ;
+;     -- 1 input functions                    ; 0     ;
+;     -- 0 input functions                    ; 0     ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 0     ;
+;     -- arithmetic mode                      ; 0     ;
+;     -- qfbk mode                            ; 0     ;
+;     -- register cascade mode                ; 0     ;
+;     -- synchronous clear/load mode          ; 0     ;
+;     -- asynchronous clear/load mode         ; 0     ;
+;                                             ;       ;
+; Total registers                             ; 0     ;
+; I/O pins                                    ; 80    ;
++---------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                ;
++----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name ; Entity Name ; Library Name ;
++----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
+; |HY_207                    ; 0 (0)       ; 0            ; 0          ; 80   ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |HY_207             ; HY_207      ; work         ;
++----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 0     ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "summator:summator_inst|schetchik_key:schetchik_key_inst"                                 ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; clik_push ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "summator:summator_inst"                                                                                                             ;
++------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; Port       ; Type   ; Severity ; Details                                                                                                                       ;
++------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+; summ_ligth ; Output ; Warning  ; Output or bidir port (7 bits) is wider than the port expression (1 bits) it drives; bit(s) "summ_ligth[6..1]" have no fanouts ;
+; summ_ligth ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                           ;
++------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
+    Info: Processing started: Sun Nov 03 14:45:16 2024
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Max2 -c Max2
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Warning (10275): Verilog HDL Module Instantiation warning at HY-207.v(186): ignored dangling comma in List of Port Connections File: C:/intelFPGA/18.1/project1/HY-207.v Line: 186
+Info (12021): Found 3 design units, including 3 entities, in source file hy-207.v
+    Info (12023): Found entity 1: HY_207 File: C:/intelFPGA/18.1/project1/HY-207.v Line: 1
+    Info (12023): Found entity 2: schetchik_key File: C:/intelFPGA/18.1/project1/HY-207.v Line: 193
+    Info (12023): Found entity 3: summator File: C:/intelFPGA/18.1/project1/HY-207.v Line: 228
+Warning (10236): Verilog HDL Implicit Net warning at HY-207.v(167): created implicit net for "pin63" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 167
+Warning (10236): Verilog HDL Implicit Net warning at HY-207.v(184): created implicit net for "chislo_clik" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 184
+Warning (10236): Verilog HDL Implicit Net warning at HY-207.v(185): created implicit net for "summ_ligth" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 185
+Warning (10236): Verilog HDL Implicit Net warning at HY-207.v(239): created implicit net for "ckik" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 239
+Warning (10236): Verilog HDL Implicit Net warning at HY-207.v(240): created implicit net for "clk" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 240
+Info (12127): Elaborating entity "HY_207" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at HY-207.v(167): object "pin63" assigned a value but never read File: C:/intelFPGA/18.1/project1/HY-207.v Line: 167
+Warning (10036): Verilog HDL or VHDL warning at HY-207.v(170): object "Nesumma_ligth" assigned a value but never read File: C:/intelFPGA/18.1/project1/HY-207.v Line: 170
+Warning (10034): Output port "pin4" at HY-207.v(4) has no driver File: C:/intelFPGA/18.1/project1/HY-207.v Line: 4
+Warning (10034): Output port "pin14" at HY-207.v(15) has no driver File: C:/intelFPGA/18.1/project1/HY-207.v Line: 15
+Warning (10034): Output port "pin15" at HY-207.v(16) has no driver File: C:/intelFPGA/18.1/project1/HY-207.v Line: 16
+Warning (10034): Output port "pin16" at HY-207.v(17) has no driver File: C:/intelFPGA/18.1/project1/HY-207.v Line: 17
+Warning (10034): Output port "pin17" at HY-207.v(18) has no driver File: C:/intelFPGA/18.1/project1/HY-207.v Line: 18
+Warning (10034): Output port "pin18" at HY-207.v(19) has no driver File: C:/intelFPGA/18.1/project1/HY-207.v Line: 19
+Warning (10034): Output port "pin19" at HY-207.v(20) has no driver File: C:/intelFPGA/18.1/project1/HY-207.v Line: 20
+Warning (10034): Output port "pin20" at HY-207.v(21) has no driver File: C:/intelFPGA/18.1/project1/HY-207.v Line: 21
+Warning (10034): Output port "pin21" at HY-207.v(22) has no driver File: C:/intelFPGA/18.1/project1/HY-207.v Line: 22
+Warning (10034): Output port "pin36" at HY-207.v(33) has no driver File: C:/intelFPGA/18.1/project1/HY-207.v Line: 33
+Info (12128): Elaborating entity "summator" for hierarchy "summator:summator_inst" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 186
+Warning (10235): Verilog HDL Always Construct warning at HY-207.v(248): variable "summ_ligth" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/intelFPGA/18.1/project1/HY-207.v Line: 248
+Warning (10235): Verilog HDL Always Construct warning at HY-207.v(250): variable "summ_ligth" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/intelFPGA/18.1/project1/HY-207.v Line: 250
+Info (12128): Elaborating entity "schetchik_key" for hierarchy "summator:summator_inst|schetchik_key:schetchik_key_inst" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 242
+Warning (10230): Verilog HDL assignment warning at HY-207.v(217): truncated value with size 32 to match size of target (25) File: C:/intelFPGA/18.1/project1/HY-207.v Line: 217
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13039): The following bidirectional pins have no drivers
+    Warning (13040): bidirectional pin "pin64" has no driver File: C:/intelFPGA/18.1/project1/HY-207.v Line: 63
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "pin2" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 2
+    Warning (13410): Pin "pin3" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 3
+    Warning (13410): Pin "pin4" is stuck at GND File: C:/intelFPGA/18.1/project1/HY-207.v Line: 4
+    Warning (13410): Pin "pin14" is stuck at GND File: C:/intelFPGA/18.1/project1/HY-207.v Line: 15
+    Warning (13410): Pin "pin15" is stuck at GND File: C:/intelFPGA/18.1/project1/HY-207.v Line: 16
+    Warning (13410): Pin "pin16" is stuck at GND File: C:/intelFPGA/18.1/project1/HY-207.v Line: 17
+    Warning (13410): Pin "pin17" is stuck at GND File: C:/intelFPGA/18.1/project1/HY-207.v Line: 18
+    Warning (13410): Pin "pin18" is stuck at GND File: C:/intelFPGA/18.1/project1/HY-207.v Line: 19
+    Warning (13410): Pin "pin19" is stuck at GND File: C:/intelFPGA/18.1/project1/HY-207.v Line: 20
+    Warning (13410): Pin "pin20" is stuck at GND File: C:/intelFPGA/18.1/project1/HY-207.v Line: 21
+    Warning (13410): Pin "pin21" is stuck at GND File: C:/intelFPGA/18.1/project1/HY-207.v Line: 22
+    Warning (13410): Pin "pin36" is stuck at GND File: C:/intelFPGA/18.1/project1/HY-207.v Line: 33
+    Warning (13410): Pin "pin38" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 37
+    Warning (13410): Pin "pin39" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 38
+    Warning (13410): Pin "pin40" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 39
+    Warning (13410): Pin "pin41" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 40
+    Warning (13410): Pin "pin42" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 41
+    Warning (13410): Pin "pin43" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 42
+    Warning (13410): Pin "pin44" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 43
+    Warning (13410): Pin "pin47" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 44
+    Warning (13410): Pin "pin48" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 45
+    Warning (13410): Pin "pin49" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 46
+    Warning (13410): Pin "pin50" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 47
+    Warning (13410): Pin "pin51" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 49
+    Warning (13410): Pin "pin52" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 50
+    Warning (13410): Pin "pin53" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 51
+    Warning (13410): Pin "pin58" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 58
+    Warning (13410): Pin "pin66" is stuck at GND File: C:/intelFPGA/18.1/project1/HY-207.v Line: 65
+    Warning (13410): Pin "pin67" is stuck at GND File: C:/intelFPGA/18.1/project1/HY-207.v Line: 66
+    Warning (13410): Pin "pin68" is stuck at GND File: C:/intelFPGA/18.1/project1/HY-207.v Line: 67
+    Warning (13410): Pin "pin69" is stuck at GND File: C:/intelFPGA/18.1/project1/HY-207.v Line: 68
+    Warning (13410): Pin "pin73" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 74
+    Warning (13410): Pin "pin74" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 75
+    Warning (13410): Pin "pin75" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 76
+    Warning (13410): Pin "pin76" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 77
+    Warning (13410): Pin "pin77" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 78
+    Warning (13410): Pin "pin78" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 79
+    Warning (13410): Pin "pin81" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 80
+    Warning (13410): Pin "pin82" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 81
+    Warning (13410): Pin "pin83" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 83
+    Warning (13410): Pin "pin84" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 84
+    Warning (13410): Pin "pin85" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 85
+    Warning (13410): Pin "pin86" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 86
+    Warning (13410): Pin "pin87" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 87
+    Warning (13410): Pin "pin88" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 88
+    Warning (13410): Pin "pin89" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 89
+    Warning (13410): Pin "pin90" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 90
+    Warning (13410): Pin "pin91" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 92
+    Warning (13410): Pin "pin92" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 93
+    Warning (13410): Pin "pin95" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 94
+    Warning (13410): Pin "pin96" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 95
+    Warning (13410): Pin "pin97" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 96
+    Warning (13410): Pin "pin98" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 97
+    Warning (13410): Pin "pin99" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 98
+    Warning (13410): Pin "pin100" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 99
+    Warning (13410): Pin "pin1" is stuck at VCC File: C:/intelFPGA/18.1/project1/HY-207.v Line: 101
+Warning (21074): Design contains 18 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "clk" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 13
+    Warning (15610): No output dependent on input pin "pin26" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 24
+    Warning (15610): No output dependent on input pin "pin27" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 25
+    Warning (15610): No output dependent on input pin "pin28" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 26
+    Warning (15610): No output dependent on input pin "pin29" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 27
+    Warning (15610): No output dependent on input pin "pin30" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 28
+    Warning (15610): No output dependent on input pin "pin33" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 29
+    Warning (15610): No output dependent on input pin "pin34" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 30
+    Warning (15610): No output dependent on input pin "pin35" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 31
+    Warning (15610): No output dependent on input pin "pin54" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 53
+    Warning (15610): No output dependent on input pin "pin55" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 54
+    Warning (15610): No output dependent on input pin "pin56" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 55
+    Warning (15610): No output dependent on input pin "pin57" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 56
+    Warning (15610): No output dependent on input pin "pin61" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 59
+    Warning (15610): No output dependent on input pin "pin62" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 61
+    Warning (15610): No output dependent on input pin "pin70" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 70
+    Warning (15610): No output dependent on input pin "pin71" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 71
+    Warning (15610): No output dependent on input pin "pin72" File: C:/intelFPGA/18.1/project1/HY-207.v Line: 72
+Info (21057): Implemented 80 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 18 input pins
+    Info (21059): Implemented 56 output pins
+    Info (21060): Implemented 6 bidirectional pins
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 101 warnings
+    Info: Peak virtual memory: 4705 megabytes
+    Info: Processing ended: Sun Nov 03 14:45:30 2024
+    Info: Elapsed time: 00:00:14
+    Info: Total CPU time (on all processors): 00:00:32
+
+
