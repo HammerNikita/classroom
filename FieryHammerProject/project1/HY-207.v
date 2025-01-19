@@ -104,15 +104,15 @@ assign pin1 = 1'b1;
 assign pin2 = 1'b1;  //output
 assign pin3 = 1'b1;
 assign pin3 = 1'b1;
-//assign pin14 = 1'b1;
-//assign pin15 = 1'b1;
-//assign pin16 = 1'b1;
-//assign pin17 = 1'b1;
-//assign pin18 = 1'b1;
-//assign pin19 = 1'b1;
-//assign pin20 = 1'b1; 
-//assign pin21 = 1'b1; 
-//assign pin36 = 1'b1; 
+assign pin14 = 1'b1;
+assign pin15 = 1'b1;
+assign pin16 = 1'b1;
+assign pin17 = 1'b1;
+assign pin18 = 1'b1;
+assign pin19 = 1'b1;
+assign pin20 = 1'b1; 
+assign pin21 = 1'b1; 
+assign pin36 = 1'b1; 
 assign pin38 = 1'b1;   
 assign pin39 = 1'b1;  
 assign pin40 = 1'b1;  
@@ -124,9 +124,9 @@ assign pin47 = 1'b1;
 assign pin48 = 1'b1; 
 assign pin49 = 1'b1; 
 assign pin50 = 1'b1; 
-assign pin51 = 1'b1; 
-assign pin52 = 1'b1; 
-assign pin53 = 1'b1; 
+//assign pin51 = 1'b1; 
+//assign pin52 = 1'b1; 
+//assign pin53 = 1'b1; 
 assign pin58 = 1'b1; 
 assign pin66 = 1'b0; 
 assign pin67 = 1'b0;
@@ -157,9 +157,6 @@ assign pin98 = 1'b1;
 assign pin99 = 1'b1;
 assign pin100 = 1'b1;
 
-
-
-
 assign pin5 = 1'bZ;  //inout
 assign pin6 = 1'bZ;
 assign pin7 = 1'bZ;
@@ -167,164 +164,26 @@ assign pin8 = 1'bZ;
 assign pin37 = 1'bZ;
 assign pin63 = 1'bZ;
 
+wire [3:0] w_btn;
+wire [3:0] w_flag_btn_down;
+wire [3:0] w_flag_btn_up;
 
-reg [6:0] Nesumma_ligth;   // создание вектора
+assign w_btn[0] = pin54;
+assign w_btn[1] = pin55;
+assign w_btn[2] = pin56;
+assign w_btn[3] = pin57;
 
-always @(*) begin
- Nesumma_ligth <= ~ summ_ligth;
-end
+assign pin51 = 1'b0;
+assign pin52 = 1'b0;
+assign pin53 = 1'b0;
 
-always @(*) begin
- Nesumma_ligth <= pin14 + pin15 + pin16 + pin17 + pin18 + pin19 + pin20 + pin21;
-end
-
-
-summator
-summator_inst
+four_button_ctrl
+inst_btn 
 (
- .chislo_clik(chislo_clik),
- .summ_ligth (summ_ligth),
+	.i_btn           (w_btn          ),
+	.o_flag_btn_down (w_flag_btn_down),
+	.o_flag_btn_up   (w_flag_btn_up  )
 );
+
 
 endmodule
-
-
-
-
-module schetchik_key (    // Модуль Ключа
-    input wire ckik,
-    input wire clk,
-    output reg clik_push
-);
-
-reg [24:0] cnt;
-//assign clik = pin62;
-wire f_clik_push; 
-
-initial begin
-
-cnt = 'd0;
-
-end
-
-    assign f_clik_push = (cnt >= 25'h0A98AC7) ? (1'b0) : (1'b1);
-
-    always @(posedge clk) begin 
-	clik_push <= f_clik_push;
-end
-    always @(posedge clk) begin 
-	if (ckik == 1'b0)  begin
-	    if(cnt < {25{1'b1}} )begin
-				cnt <= cnt +'d1;
-	    end else begin
-				cnt <= cnt;
-		 end
-	end else begin
-		cnt <= 'd0;
-	end
-end 
-
-endmodule
-
-module summator (                   //Модуль сумматора
-    input wire chislo_clik,         //колличество нажатий
-    output reg [6 : 0] summ_ligth //колличество светящихся ламп
-);
-
-
-
-
-schetchik_key
-schetchik_key_inst
-(
- .ckik(ckik),
- .clk(clk),
- .clik_push(chislo_clik)
-);
-
-initial begin
-    summ_ligth = 7'b0;
-end
-    always @(chislo_clik) begin
-        if (summ_ligth + 1'b1);
-        else begin
-            summ_ligth <= summ_ligth;
-        end
-    end
-
-endmodule
-
-
-
-
-
-module sevensegment (
-    output reg[7:0] w_semiseg;
-   input wire[3:0] w_number;
-);
-    
-
-//    assign pin51 = 1'b0;           // 7segment
-//    assign pin52 = 1'b0;
-//    assign pin53 = 1'b0;
-   
-//	 
-//	 assign  pin1 = 1'b1;
-//	 assign  pin3 = 1'b0;
-//	 assign  pin2 = 1'b1;
-//    assign  pin4 = 1'b0;
-	 
-    
-// assign w_number = {ROW3,ROW2,ROW1,ROW0};    kompaktno
-
- assign w_number[0] = ~ pin57;//~ROW0;
- assign w_number[1] = ~ pin56;//~ROW1;
- assign w_number[2] = ~ pin55;//~ROW2;
- assign w_number[3] = ~ pin54;//~ROW3;
- 
- assign SEG_DP = pin97;
- assign SEG_G  = pin98;
- assign SEG_F  = pin99;
- assign SEG_E  = pin100;
- assign SEG_D  = pin91;
- assign SEG_C  = pin92;
- assign SEG_B  = pin95;
- assign SEG_A  = pin96;
-  
-   assign pin14 = pin57;
-   assign pin15 = pin56;
-	assign pin16 = pin55;
-	assign pin17 = pin54;
- 
- assign {SEG_DP,SEG_G,SEG_F,SEG_E,SEG_D,SEG_C,SEG_B,SEG_A} = w_semiseg;
-    
- always@(w_number)begin
-    case(w_number)
-    'd0: w_semiseg <= 8'b0011_1111;
-    'd1: w_semiseg <= 8'b0000_0110;
-    'd2: w_semiseg <= 8'b0101_1011;
-    'd3: w_semiseg <= 8'b0100_1111;
-    'd4: w_semiseg <= 8'b0110_0110;
-    'd5: w_semiseg <= 8'b0110_1101;
-    'd6: w_semiseg <= 8'b0111_1101;
-    'd7: w_semiseg <= 8'b0000_0111;
-    'd8: w_semiseg <= 8'b0111_1111;
-    'd9: w_semiseg <= 8'b0110_1111;
-    'hA: w_semiseg <= 8'b0111_0111;
-    'hB: w_semiseg <= 8'b0111_1100;
-    'hC: w_semiseg <= 8'b0011_1001;
-    'hD: w_semiseg <= 8'b0101_1110;
-    'hE: w_semiseg <= 8'b0111_1001;
-    'hF: w_semiseg <= 8'b0111_0001;
-    endcase
-end
-    
-endmodule
-
-
-
-
-
-
-
-

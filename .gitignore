@@ -1,3 +1,8 @@
-FieryHammerProject/project1/*
+FieryHammerProject/project1/*.*
+FieryHammerProject/project1/db/
+FieryHammerProject/project1/incremental_db/
+FieryHammerProject/project1/output_files/
+FieryHammerProject/project1/src/*.*
 
 !FieryHammerProject/project1/HY-207.v
+!FieryHammerProject/project1/src/test1.v
