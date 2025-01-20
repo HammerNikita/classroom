@@ -104,10 +104,10 @@ assign pin1 = 1'b1;
 assign pin2 = 1'b1;  //output
 assign pin3 = 1'b1;
 assign pin3 = 1'b1;
-assign pin14 = 1'b1;
-assign pin15 = 1'b1;
-assign pin16 = 1'b1;
-assign pin17 = 1'b1;
+// assign pin14 = 1'b1;
+// assign pin15 = 1'b1;
+// assign pin16 = 1'b1;
+// assign pin17 = 1'b1;
 assign pin18 = 1'b1;
 assign pin19 = 1'b1;
 assign pin20 = 1'b1; 
@@ -164,7 +164,7 @@ assign pin8 = 1'bZ;
 assign pin37 = 1'bZ;
 assign pin63 = 1'bZ;
 
-wire [3:0] w_btn;
+wire [3:0] w_btn;// новые данные заведеные для подтягивания из других модулей в них
 wire [3:0] w_flag_btn_down;
 wire [3:0] w_flag_btn_up;
 
@@ -184,6 +184,46 @@ inst_btn
 	.o_flag_btn_down (w_flag_btn_down),
 	.o_flag_btn_up   (w_flag_btn_up  )
 );
+
+wire [3:0] w_i_massive_led;
+wire [3:0] w_o_massive_led;
+
+
+assign w_i_massive_led[0] = pin14;
+assign w_i_massive_led[1] = pin15;
+assign w_i_massive_led[2] = pin16;
+assign w_i_massive_led[3] = pin17;
+
+assign pin14 = 1'b1;// получается что задублировал то что было сверху
+assign pin15 = 1'b1;
+assign pin16 = 1'b1;
+assign pin17 = 1'b1;
+
+four_LED
+inst_led
+(
+	.i_massive_led (w_i_massive_led),
+	.o_massive_led (w_o_massive_led)
+	
+);
+
+
+assign w_flag_btn_down[3:0] = w_o_massive_led[3:0];
+//правильнее писать запоминание(сохранение) сигнала в общем или частном?
+
+//assign w_flag_btn_up[3:0] = ХХХХ[3:0];
+
+/*тут должен быть другой флаг,если бы я не заморочился с сохранением,
+но можно было приплести остальные 4 светодиода,чтоб горели они ,пока не горят те*/ 
+
+//а почему бы и нет!
+wire [3:0] w_ost_LeD;
+assign w_ost_LeD[0] = pin18;
+assign w_ost_LeD[1] = pin19;
+assign w_ost_LeD[2] = pin20;
+assign w_ost_LeD[3] = pin21;
+
+assign w_flag_btn_up[3:0] = w_ost_LeD[3:0]
 
 
 endmodule
