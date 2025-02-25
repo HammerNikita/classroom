@@ -207,6 +207,21 @@ assign w_i_massive_led[3:0] = w_flag_btn_down[3:0] ;// То куда пойде�
 //добавка кода из задания счетчика
 /*используем пины 51-53 взять просто модуль
 объединить тут лампы и результат из управления счетчика
+four_LED&schet
 */
+
+wire [3:0] w_schet_signal;// провод с выходным результатом на лампы
+
+four_LED&schet
+inst_four_LED&schet
+(
+	.o_schet_signal  (w_schet_signal )
+	
+);
+
+assign pin18 = w_schet_signal[0];
+assign pin19 = w_schet_signal[1];
+assign pin20 = w_schet_signal[2];
+assign pin21 = w_schet_signal[3];
 
 endmodule
