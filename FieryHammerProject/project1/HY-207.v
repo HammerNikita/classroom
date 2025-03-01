@@ -173,9 +173,9 @@ assign w_btn[1] = pin55;
 assign w_btn[2] = pin56;
 assign w_btn[3] = pin57;
 
-assign pin51 = 1'b0;
-assign pin52 = 1'b0;
-assign pin53 = 1'b0;
+// assign pin51 = 1'b0;
+// assign pin52 = 1'b0;
+// assign pin53 = 1'b0;
 
 four_button_ctrl
 inst_btn 
@@ -223,5 +223,23 @@ assign pin18 = w_schet_signal[0];
 assign pin19 = w_schet_signal[1];
 assign pin20 = w_schet_signal[2];
 assign pin21 = w_schet_signal[3];
+
+
+assign w_btn[0] = pin54;
+assign w_btn[1] = pin55;
+assign w_btn[2] = pin56;
+
+Management_button         //подключение кнопок к логике
+inst_Management_button
+(
+	.clk(clk),
+    .i_manag_button(w_btn),               
+    .o_schet_signal_button()
+);
+
+Cyclic_button_senser 
+inst_Cyclic_button_senser 
+    .clk(clk),               
+    .o_sensor()                 // надо вынуть, я могу только положить!!!
 
 endmodule
