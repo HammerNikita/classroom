@@ -210,36 +210,46 @@ assign w_i_massive_led[3:0] = w_flag_btn_down[3:0] ;// То куда пойде�
 four_LED&schet
 */
 
-wire [3:0] w_schet_signal;// провод с выходным результатом на лампы
+wire [3:0] w_schet_signal_led;// провод с выходным результатом на ламп
+wire [3:0] w_schet_signal;
 
-four_LED&schet
-inst_four_LED&schet
+Massive_LED
+inst_Massive_LED
 (
-	.o_schet_signal  (w_schet_signal )
-	
+	.i_schet_signal  (w_schet_signal)	
+	.o_schet_LEDs    (w_schet_signal_led)
 );
 
-assign pin18 = w_schet_signal[0];
-assign pin19 = w_schet_signal[1];
-assign pin20 = w_schet_signal[2];
-assign pin21 = w_schet_signal[3];
+assign pin18 = w_schet_signal_led[0];
+assign pin19 = w_schet_signal_led[1];
+assign pin20 = w_schet_signal_led[2];
+assign pin21 = w_schet_signal_led[3];
 
 
 assign w_btn[0] = pin54;
 assign w_btn[1] = pin55;
 assign w_btn[2] = pin56;
 
-Management_button         //подключение кнопок к логике
-inst_Management_button
+wire [3:0] w_sensor;
+Cyclic_button_senser 
 (
-	.clk(clk),
-    .i_manag_button(w_btn),               
-    .o_schet_signal_button()
+    .clk     (clk     ), // Тактовый сигнал
+    .o_sensor(w_sensor)  // Выходные сигналы (пины 51-53)
 );
 
-Cyclic_button_senser 
-inst_Cyclic_button_senser 
-    .clk(clk),               
-    .o_sensor()                 // надо вынуть, я могу только положить!!!
+assign pin51 = w_sensor[0];
+assign pin52 = w_sensor[1];
+assign pin53 = w_sensor[2];
+
+Management_Schetchik
+inst_Management_Schetchik //хотим обьединить кнопки и счетчик
+( 
+    .clk            (clk),
+	.zero           (w_sensor),
+    .i_manag_button (w_btn),//массив входящих от кнопок
+	.o_schet_signal (w_schet_signal)
+);
 
 endmodule
+
+`include ".src/Zadanie_Schetchik.v/"

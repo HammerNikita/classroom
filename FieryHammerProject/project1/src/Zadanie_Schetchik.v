@@ -1,5 +1,5 @@
-/*
 
+/*
 1) По нажатию кнопки 1 +1бит,кнопки 2 -1бит.(возможно 3я кнопка ресета)
 1.1)создать кнопку по 0 с откликом в 1 сек
 1.2)создать модуль опроса кнопок(по клоку(011,101,110))
@@ -23,7 +23,7 @@
 module LED_Save
 (
 	input  wire i_enable_led ,// сюда должен прийти сигнал с счетчика
-	output wire o_led,
+	output wire o_led
 );
 
 reg r_reg;// 0 - вкл, 1 -lamp выкл
@@ -31,10 +31,10 @@ initial begin
 	r_leg = 1'b1; //чтоб не горела
 end
 
-always @(negative i_enable_led) begin// по спаду смена состояния
+always @(negedge i_enable_led) begin// по спаду смена состояния
 	r_led <= ~r_led;
 end
-assign	o_led = r_led // присвоение выходу рега
+assign	o_led = r_led; // присвоение выходу рега
 
 endmodule
 
@@ -57,18 +57,21 @@ inst_led_0
   .i_enable_led (i_schet_signal[0]),//вход заимствованого(куда подставляется в этом модуле)
   .o_led (w_massive_schet_led[0])   //выход заимствованого(куда подставляется в этом модуле)
 );
+
 LED_Save
 inst_led_1
 (
-  .i_enable_led (i_ei_schet_signalns[1]),
+  .i_enable_led (i_schet_signal[1]),
   .o_led (w_massive_schet_led [1])
 );
+
 LED_Save
 inst_led_2
 (
   .i_enable_led (i_schet_signal[2]),
   .o_led (w_massive_schet_led [2])
 );
+
 LED_Save
 inst_led_3
 (
@@ -92,16 +95,20 @@ module Schetchik
 	end
 	//reg [3:0] promegutok;
 	always @(posedge i_button1 or posedge i_button2 or posedge i_button3) begin
-		if (i_button1 = 1'b1) begin
+		if (i_button1 == 1'b1) begin
 			Result <= Result + 4'b0001;
-		end else if (i_button2 = 1'b1) begin
+		end
+         else if (i_button2 == 1'b1) begin
 			Result <= Result - 4'b0001;
-		end else if (i_button3 = 1'b1) begin
-			Result <= Result - 4'b0;
-		end else begin
+		end
+         else if (i_button3 == 1'b1) begin
+			Result <= 4'b0;
+         end
+          else begin
 			 Result <= Result;
 		end   
 end
+
 endmodule
 
 //1.1 кнопка с задержкой
@@ -109,11 +116,12 @@ module schetchik_key
 (
     input wire i_push,
     input wire clk,
-    output wire o_clik_push
+    input wire zero,
+    output reg o_clik_push
 );
 
 reg [24:0] cnt;
-wire o_clik_push;
+wire  w_clik_push;
 
 initial begin
 
@@ -121,22 +129,40 @@ cnt = 'd0;// счетчик начала зажатия
 
 end
 
-    assign o_clik_push = (cnt >= 25'h0A98AC7) ? (1'b0) : (1'b1);
+    assign w_clik_push = (cnt >= 25'h0A98AC7) ? (1'b0) : (1'b1);
 
     always @(posedge clk) begin 
-		o_clik_push <= o_clik_push;
-end
+		o_clik_push <= w_clik_push;
+    end
+
+    // always @(posedge clk) begin 
+	// if (i_push == 1'b0)  begin
+	//     if(cnt < {25{1'b1}} )begin
+	// 			cnt <= cnt +'d1;
+	//     end else begin
+	// 			cnt <= cnt;
+	// 	 end
+	// end else begin
+	// 	cnt <= 'd0;
+	// end
+    // end 
+
     always @(posedge clk) begin 
-	if (clik == 1'b0)  begin
-	    if(cnt < {25{1'b1}} )begin
-				cnt <= cnt +'d1;
-	    end else begin
-				cnt <= cnt;
-		 end
-	end else begin
-		cnt <= 'd0;
-	end
-end 
+        if(zero)begin
+            if (i_push == 1'b0)  begin
+                if(cnt < {25{1'b1}} )begin
+                        cnt <= cnt +'d1;
+                end else begin
+                        cnt <= cnt;
+                 end
+            end else begin
+                cnt <= 'd0;
+            end
+        end
+        else begin
+            cnt <= cnt;
+        end
+    end 
 
 endmodule
 
@@ -178,6 +204,7 @@ endmodule
 module Management_button //хотим обьединить кнопки
 (
 input  wire clk,
+input wire  [2:0] zero,  //синхронизация кнопок
 input  wire [2:0] i_manag_button,//массив входящих от кнопок
 output wire [2:0] o_schet_signal_button //сигналы кнопок
 );
@@ -187,20 +214,25 @@ key_summa
 (
     .i_push (i_manag_button[0]),//вход заимствованого(куда подставляется в этом модуле)
     .clk (clk),
+    .zero (zero[0]),
     .o_clik_push (o_schet_signal_button[0])
 );
+
 schetchik_key 
 key_raznica
 (
     .i_push (i_manag_button[1]),
     .clk (clk),
+    .zero (zero[1]),
     .o_clik_push (o_schet_signal_button[1])
 );
+
 schetchik_key 
 key_res
 (
     .i_push (i_manag_button[2]),
     .clk (clk),
+    .zero (zero[0]),
     .o_clik_push (o_schet_signal_button[2])
 );
 
@@ -208,22 +240,29 @@ endmodule
 
 module Management_Schetchik //хотим обьединить кнопки и счетчик
 ( 
+    input  wire       clk,
+    input wire  [2:0] zero,
+    input  wire [2:0] i_manag_button,//массив входящих от кнопок
 	output wire [3:0] o_schet_signal
 );
 
-// Management_button 
-// inst_Management_button 
-// (
-//    .clk(clk),
-//    .i_manag_button(i_manag_button),
-//    .o_schet_signal(o_schet_signal_button) 
-// );
+wire [3:0] w_schet_signal_button;
+
+Management_button 
+inst_Management_button 
+(
+   .clk(clk),
+   .zero (zero),
+   .i_manag_button(i_manag_button),
+   .o_schet_signal(w_schet_signal_button) 
+);
+
 Schetchik 
 inst_Schetchik
 (
-	.i_button1(o_schet_signal_button[0]),
-	.i_button2(o_schet_signal_button[1]),
-	.i_button3(o_schet_signal_button[2]),
+	.i_button1(w_schet_signal_button[0]),
+	.i_button2(w_schet_signal_button[1]),
+	.i_button3(w_schet_signal_button[2]),
 	.Result(o_schet_signal)
 )
 
